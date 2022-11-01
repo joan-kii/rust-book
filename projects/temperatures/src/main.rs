@@ -4,7 +4,7 @@ use std::io;
 fn main() {
     println!("Convert temperatures!");
 
-    let mut mode: i8;
+    let mut mode: u8;
     
     loop {
         println!("Fahrenheit to Celsius: Enter 1");
