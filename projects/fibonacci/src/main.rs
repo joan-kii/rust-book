@@ -4,9 +4,9 @@ use std::io;
 fn main() {
     println!("Fibonacci numbers!!!");
   
-    let position: u8;
+    let position: u16;
 
-    println!("Enter a position between 0 and 255 to get the fibonacci value: ");
+    println!("Enter a position between 0 and 24 to get the fibonacci value: ");
 
     loop {
         let mut str_position = String::new();
@@ -16,13 +16,18 @@ fn main() {
             .expect("Failed to read the input");
 
         position = match str_position.trim().parse() {
-            Ok(num) => num,
+            Ok(num) => {
+                if num > 24 {
+                    println!("Please, enter a number between 0 and 24");
+                    continue;
+                }
+                num
+            },
             Err(_) => {
-                println!("Please enter a number between 0 and 255");
-                continue
+                println!("Please, enter a number between 0 and 24");
+                continue;
             }
         };
-
         break;
     }
 
@@ -31,15 +36,11 @@ fn main() {
     println!("The fibonacci value is: {result}");
 }
 
-fn get_fibonacci(pos: u8) -> u16 {
-
-    let mut value: u16 = 0;
+fn get_fibonacci(pos: u16) -> u16 {
 
     if pos <= 1 {
-        value = pos as u16;
-        value
+        pos 
     } else {
-        get_fibonacci((&value - 1).try_into().unwrap()) + get_fibonacci((&value - 2).try_into().unwrap())
+        get_fibonacci(pos - 1) + get_fibonacci(pos - 2)
     }
-
 }
