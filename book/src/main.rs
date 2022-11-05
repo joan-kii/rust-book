@@ -1,19 +1,7 @@
 fn main() {
-    let s = String::from("Hello");
+    let a = [1, 2, 3, 4];
 
-    string_func(s);
+    let s = &a[0..2];
 
-    let x = 5;
-
-    number_func(x);
-
-    println!("x = {}", x);
-}
-
-fn string_func(string: String) {
-    println!("{string}");
-}
-
-fn number_func(num: i32) {
-    println!("{num}");
+    assert_eq!(s, &[1, 3]);
 }
