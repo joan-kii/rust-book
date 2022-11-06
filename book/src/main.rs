@@ -1,7 +1,7 @@
+struct Point (i32, i32, i32);
+
 fn main() {
-    let a = [1, 2, 3, 4];
-
-    let s = &a[0..2];
-
-    assert_eq!(s, &[1, 3]);
+    let new_point: Point = Point(12, 24, 48);
+    
+    println!("First value: {}", new_point.0);
 }
