@@ -1,17 +1,13 @@
-enum Message {
-    Quit,
-    Move {x: i32, y: i32},
-    Write(String),
-    ChangeColor(i32, i32, i32)
-}
-
-impl Message {
-    fn call(&self) {
-        println!("Method called!");
-    }
-}
-
 fn main() {
-    let m = Message::Write(String::from("My message"));
-    m.call();
+    let x = Some(5);
+    plus_one(x);
+    plus_one(None);
+}
+
+fn plus_one(x: Option<i32>) {
+    if let Some(val) = x {
+        println!("{:?}", val);
+    } else {
+        println!("None")
+    }
 }
