@@ -1,7 +1,17 @@
-struct Point (i32, i32, i32);
+enum Message {
+    Quit,
+    Move {x: i32, y: i32},
+    Write(String),
+    ChangeColor(i32, i32, i32)
+}
+
+impl Message {
+    fn call(&self) {
+        println!("Method called!");
+    }
+}
 
 fn main() {
-    let new_point: Point = Point(12, 24, 48);
-    
-    println!("First value: {}", new_point.0);
+    let m = Message::Write(String::from("My message"));
+    m.call();
 }
