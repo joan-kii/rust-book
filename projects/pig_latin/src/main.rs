@@ -3,17 +3,17 @@ use std::io;
 fn main() {
     println!("Say something!");
 
-   let vowels = vec!['a', 'e', 'i', 'o', 'u'];
-    let mut words = String::new();
+    let vowels = vec!['a', 'e', 'i', 'o', 'u'];
+    let mut input = String::new();
 
     io::stdin()
-        .read_line(&mut words)
+        .read_line(&mut input)
         .expect("Failed to read input");
     
     let mut word_list = Vec::new();
     let mut word = String::new();
 
-    for letter in words.chars() {
+    for letter in input.trim().chars() {
         if letter != ' ' {
             word.push(letter);
         } else if letter == ' ' {
@@ -24,12 +24,11 @@ fn main() {
     
     word_list.push(word);
      
-    for mut word in word_list {
-        if vowels.iter().any(|&val| word.starts_with(val)) {
-            word += "ay";
+    for word in word_list {
+        if !vowels.iter().any(|&val| word.starts_with(val)) {
+            println!("{}", format!("{}{}{}{}", &word[1..], "-", &word[..1], "ay"));
+        } else {
+            println!("{}", format!("{}{}", &word, "-hay"));
         }
-        println!("{word}");
     }
-
-    
 }
