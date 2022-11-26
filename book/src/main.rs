@@ -1,23 +1,17 @@
-struct Item<T, U> {
-    Number: T,
-    Char: U
-}
-
 fn main() {
-    let numbers = vec![34, 50, 25, 100, 65];
-    println!("The largest number is: {}", largest(&numbers));
+    
+    let result;
+    let string1 = String::from("abcd");
+    let string2 = String::from("xyz");
+    result = longest(string1.as_str(), string2.as_str());
 
-    let chars = vec!['c', 'y', 'w', 'a', 'h'];
-    println!("The largest character is: {}", largest(&chars));
+    println!("The longest string: {}", result);
 }
 
-fn largest<Item>(list: &[Item<T, U>]) -> &<Item> {
-    let mut max = &list[0];
-
-    for item in list {
-        if item > max {
-            max = item;
-        }
+fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
+    if str1.len() > str2.len() {
+        str1
+    } else {
+        str2
     }
-    max
 }
