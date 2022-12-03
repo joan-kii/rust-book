@@ -1,17 +1,16 @@
-fn main() {
-    
-    let result;
-    let string1 = String::from("abcd");
-    let string2 = String::from("xyz");
-    result = longest(string1.as_str(), string2.as_str());
-
-    println!("The longest string: {}", result);
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32
 }
 
-fn longest<'a>(str1: &'a str, str2: &'a str) -> &'a str {
-    if str1.len() > str2.len() {
-        str1
-    } else {
-        str2
-    }
+fn main() {
+    let mut list = [
+        Rectangle {width: 10, height: 1},
+        Rectangle {width: 3, height: 5},
+        Rectangle {width: 7, height: 12}
+    ];
+
+    list.sort_by_key(|r| r.width);
+    println!("Sorted list {:#?}", list);
 }
