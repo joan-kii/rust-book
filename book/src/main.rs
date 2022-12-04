@@ -1,16 +1,21 @@
-#[derive(Debug)]
-struct Rectangle {
-    width: u32,
-    height: u32
+struct CustomSmartPointer {
+    data: String
+}
+
+impl Drop for CustomSmartPointer {
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
+    }
 }
 
 fn main() {
-    let mut list = [
-        Rectangle {width: 10, height: 1},
-        Rectangle {width: 3, height: 5},
-        Rectangle {width: 7, height: 12}
-    ];
+    let stuff = CustomSmartPointer {
+        data: String::from("my stuff")
+    };
 
-    list.sort_by_key(|r| r.width);
-    println!("Sorted list {:#?}", list);
+    let other_stuff = CustomSmartPointer {
+        data: String::from("my other stuff")
+    };
+
+    println!("CustomSmartPointers created!");
 }
