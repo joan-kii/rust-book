@@ -1,21 +1,16 @@
-struct CustomSmartPointer {
-    data: String
-}
-
-impl Drop for CustomSmartPointer {
-    fn drop(&mut self) {
-        println!("Dropping CustomSmartPointer with data `{}`!", self.data);
-    }
-}
+use std::thread;
+use std::time::Duration;
 
 fn main() {
-    let stuff = CustomSmartPointer {
-        data: String::from("my stuff")
-    };
+    thread::spawn(|| {
+        for i in 1..10 {
+            println!("hi number {} for the spawned thread", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
 
-    let other_stuff = CustomSmartPointer {
-        data: String::from("my other stuff")
-    };
-
-    println!("CustomSmartPointers created!");
+    for i in 1..5 {
+        println!("hi number {} from main thread", i);
+        thread::sleep(Duration::from_millis(1));
+    }
 }
