@@ -37,6 +37,7 @@ impl Post {
 
     pub fn reject(&mut self) {
         if let Some(s) = self.state.take() {
+            self.is_draft = true;
             self.state = Some(s.reject())
         }
     }
