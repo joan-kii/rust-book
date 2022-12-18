@@ -9,6 +9,18 @@ fn main() {
     post.request_review();
     assert_eq!("", post.content());
 
+    post.reject();
+    assert_eq!("", post.content());
+
+    post.add_text(" And some bread.");
+    assert_eq!("", post.content());
+
+    post.request_review();
+    assert_eq!("", post.content());
+
     post.approve();
-    assert_eq!("I ate a salad for lunch today.", post.content());
+    assert_eq!("", post.content());
+
+    post.approve();
+    assert_eq!("I ate a salad for lunch today. And some bread.", post.content());
 }
