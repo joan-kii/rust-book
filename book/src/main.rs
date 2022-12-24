@@ -1,22 +1,9 @@
-use std::sync::{Arc, Mutex};
-use std::thread;
-
 fn main() {
-    let counter = Arc::new(Mutex::new(0));
-    let mut handles = vec![];
+    let num = Some(4);
 
-    for _ in 0..10 {
-        let counter = Arc::clone(&counter);
-        let handle = thread::spawn(move || {
-            let mut num = counter.lock().unwrap();
-            *num += 1;
-        });
-
-        handles.push(handle);
+    match num {
+        Some(x) if x % 2 == 0 => println!("Even number {x}"),
+        Some(y) => println!("Odd number {y}"),
+        None => ()
     }
-
-    for handle in handles {
-        handle.join().unwrap();
-    }
-    println!("Result: {}", *counter.lock().unwrap());
 }
